@@ -77,6 +77,27 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\add book.png" />
+    <Content Include="Images\add user.png" />
+    <Content Include="Images\connection.png" />
+    <Content Include="Images\department.png" />
+    <Content Include="Images\fine.png" />
+    <Content Include="Images\issue book.png" />
+    <Content Include="Images\library-700x400.jpg" />
+    <Content Include="Images\libraryLogin.png" />
+    <Content Include="Images\login.png" />
+    <Content Include="Images\main.ico" />
+    <Content Include="Images\program.png" />
+    <Content Include="Images\report.png" />
+    <Content Include="Images\return book.png" />
+    <Content Include="Images\session.png" />
+    <Content Include="Images\splash.jpg" />
+    <Content Include="Images\student.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DataAccessLayer\" />
+    <Folder Include="EntityFramework\" />
+    <Folder Include="Models\" />
     <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
