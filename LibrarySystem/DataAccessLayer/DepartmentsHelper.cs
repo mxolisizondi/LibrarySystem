@@ -1,5 +1,5 @@
 ﻿using LibrarySystem.EntityFramework;
-using LibraryManagementSystem.Models;
+using LibrarySystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace LibraryManagementSystem.DataAccessLayer
+namespace LibrarySystem.DataAccessLayer
 {
     class DepartmentsHelper
     {
