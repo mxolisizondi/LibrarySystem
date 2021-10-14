@@ -52,6 +52,10 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\DepartmentsModel.cs" />
+    <Compile Include="Models\DesignationsModel.cs" />
+    <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\StaffsModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -97,7 +101,6 @@
   <ItemGroup>
     <Folder Include="DataAccessLayer\" />
     <Folder Include="EntityFramework\" />
-    <Folder Include="Models\" />
     <Folder Include="UI\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
