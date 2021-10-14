@@ -17,6 +17,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WeifenLuo.WinFormsUI;
+using WeifenLuo.WinFormsUI.Docking;
 
 namespace LibrarySystem.Forms
 {

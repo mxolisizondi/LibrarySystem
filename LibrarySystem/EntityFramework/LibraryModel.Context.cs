@@ -16,7 +16,7 @@ namespace LibrarySystem.EntityFramework
     public partial class LibraryDBEntities : DbContext
     {
         public LibraryDBEntities()
-            : base("name=LibraryDBEntities")
+            : base("name=LMS_DBEntities1")
         {
         }
     
@@ -27,12 +27,13 @@ namespace LibrarySystem.EntityFramework
     
         public virtual DbSet<BookCategories> BookCategories { get; set; }
         public virtual DbSet<Books> Books { get; set; }
-        public virtual DbSet<BookTable> BookTable { get; set; }
         public virtual DbSet<Departments> Departments { get; set; }
         public virtual DbSet<Designations> Designations { get; set; }
         public virtual DbSet<Fines> Fines { get; set; }
         public virtual DbSet<IssueBooks> IssueBooks { get; set; }
+        public virtual DbSet<Programs> Programs { get; set; }
         public virtual DbSet<ReturnBooks> ReturnBooks { get; set; }
+        public virtual DbSet<Sessions> Sessions { get; set; }
         public virtual DbSet<Staffs> Staffs { get; set; }
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<UserPrivileges> UserPrivileges { get; set; }

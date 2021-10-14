@@ -61,11 +61,11 @@
     <Reference Include="VS2005Extender">
       <HintPath>..\..\LibraryManagementSystem-master\LibraryManagementSystem\bin\Debug\VS2005Extender.dll</HintPath>
     </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.dll</HintPath>
     </Reference>
-    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
-      <HintPath>..\packages\DockPanelSuite.ThemeVS2005Multithreading.3.1.0\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading.dll</HintPath>
+    <Reference Include="WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading, Version=3.0.6.0, Culture=neutral, PublicKeyToken=5cded1a1a0a7b481, processorArchitecture=MSIL">
+      <HintPath>..\packages\DockPanelSuite.ThemeVS2005Multithreading.3.0.6\lib\net40\WeifenLuo.WinFormsUI.Docking.ThemeVS2005Multithreading.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -75,7 +75,9 @@
     <Compile Include="DataAccessLayer\DesignationsHelper.cs" />
     <Compile Include="DataAccessLayer\FinesHelper.cs" />
     <Compile Include="DataAccessLayer\IssueBooksHelper.cs" />
+    <Compile Include="DataAccessLayer\ProgramsHelper.cs" />
     <Compile Include="DataAccessLayer\ReturnBooksHelper.cs" />
+    <Compile Include="DataAccessLayer\SessionsHelper.cs" />
     <Compile Include="DataAccessLayer\StaffsHelper.cs" />
     <Compile Include="DataAccessLayer\StudentsHelper.cs" />
     <Compile Include="DataAccessLayer\UserPrivilegesHelper.cs" />
@@ -84,9 +86,6 @@
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\Books.cs">
-      <DependentUpon>LibraryModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityFramework\BookTable.cs">
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\Departments.cs">
@@ -116,7 +115,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>LibraryModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EntityFramework\Programs.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityFramework\ReturnBooks.cs">
+      <DependentUpon>LibraryModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityFramework\Sessions.cs">
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityFramework\Staffs.cs">
@@ -131,13 +136,11 @@
     <Compile Include="EntityFramework\Users.cs">
       <DependentUpon>LibraryModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs" />
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\DepartmentsModel.cs" />
     <Compile Include="Models\DesignationsModel.cs" />
     <Compile Include="Models\Enums.cs" />
+    <Compile Include="Models\ProgramsModel.cs" />
+    <Compile Include="Models\SessionsModel.cs" />
     <Compile Include="Models\StaffsModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -249,9 +252,6 @@
     <Compile Include="UI\User Forms\frmUpdateUser.Designer.cs">
       <DependentUpon>frmUpdateUser.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -364,30 +364,6 @@
     <Content Include="Images\session.png" />
     <Content Include="Images\splash.jpg" />
     <Content Include="Images\student.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Bottom.png" />
-    <Content Include="ThemeVS2005\Resources\Dockindicator_PaneDiamond_Fill.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Hotspot.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_HotspotIndex.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_HotspotIndex_VS2012.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Left.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Right.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PaneDiamond_Top.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelBottom.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelBottom_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelFill.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelFill_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelLeft.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelLeft_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelRight.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelRight_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelTop.png" />
-    <Content Include="ThemeVS2005\Resources\DockIndicator_PanelTop_Active.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_AutoHide.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_Close.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_Dock.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_Option.png" />
-    <Content Include="ThemeVS2005\Resources\DockPane_OptionOverflow.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

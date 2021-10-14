@@ -41,8 +41,10 @@ namespace LibrarySystem.EntityFramework
         public virtual ICollection<Fines> Fines { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<IssueBooks> IssueBooks { get; set; }
+        public virtual Programs Programs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ReturnBooks> ReturnBooks { get; set; }
+        public virtual Sessions Sessions { get; set; }
         public virtual Staffs Staffs { get; set; }
     }
 }

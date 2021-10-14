@@ -4,36 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="936607c23c054f9286583be0c5fd499b" Name="Diagram1">
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.BookCategories" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.Books" Width="1.5" PointX="5.25" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.BookTable" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.Departments" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.Designations" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.Fines" Width="1.5" PointX="10.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.IssueBooks" Width="1.5" PointX="13.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.ReturnBooks" Width="1.5" PointX="10.5" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.Staffs" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.Students" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.UserPrivileges" Width="1.5" PointX="5.25" PointY="20.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="LibraryDBEntitiesModel.Users" Width="1.5" PointX="5.25" PointY="24.625" IsExpanded="true" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Books_BookTypes" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Books_Departments" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Books_Staffs" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Fines_Books" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_IssueBooks_Books" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_ReturnBooks_Books" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Students_Departments" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Staffs_Designations" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Fines_Staffs" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Fines_Students" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_IssueBooks_Staffs" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_IssueBooks_Students" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_ReturnBooks_Staffs" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_ReturnBooks_Students" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Students_Staffs" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_UserPrivileges_Staffs" ManuallyRouted="false" />
-        <AssociationConnector Association="LibraryDBEntitiesModel.FK_Users_Staffs" ManuallyRouted="false" />
+      <Diagram DiagramId="79cd83facc004ffa8ef399da33309ba6" Name="Diagram1">
+        <EntityTypeShape EntityType="LMS_DBModel.BookCategories" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Books" Width="1.5" PointX="5.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Departments" Width="1.5" PointX="3" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Designations" Width="1.5" PointX="0.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Fines" Width="1.5" PointX="10.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.IssueBooks" Width="1.5" PointX="13.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Programs" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.ReturnBooks" Width="1.5" PointX="10.5" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Sessions" Width="1.5" PointX="6" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Staffs" Width="1.5" PointX="3" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Students" Width="1.5" PointX="8.25" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.UserPrivileges" Width="1.5" PointX="5.25" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="LMS_DBModel.Users" Width="1.5" PointX="5.25" PointY="25.25" IsExpanded="true" />
+        <AssociationConnector Association="LMS_DBModel.FK_Books_BookTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Books_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Books_Staffs" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Fines_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_IssueBooks_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_ReturnBooks_Books" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Students_Departments" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Staffs_Designations" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Fines_Staffs" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Fines_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_IssueBooks_Staffs" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_IssueBooks_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Students_Programs" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_ReturnBooks_Staffs" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_ReturnBooks_Students" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Students_Sessions" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Students_Staffs" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_UserPrivileges_Staffs" ManuallyRouted="false" />
+        <AssociationConnector Association="LMS_DBModel.FK_Users_Staffs" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

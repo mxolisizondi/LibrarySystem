@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="LibraryDBEntitiesModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="LMS_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BookCategories">
           <Key>
             <PropertyRef Name="BookCategoryID" />
@@ -27,20 +27,6 @@
           <Property Name="NoOfCopies" Type="int" Nullable="false" />
           <Property Name="DateOfRegister" Type="date" Nullable="false" />
           <Property Name="Price" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="BookTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="price" Type="float" />
-          <Property Name="stock" Type="int" />
-          <Property Name="isbn" Type="nvarchar" MaxLength="50" />
-          <Property Name="author" Type="nvarchar" MaxLength="50" />
-          <Property Name="publisher" Type="nvarchar" MaxLength="50" />
-          <Property Name="page" Type="int" />
-          <Property Name="cover_page_picture" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -83,6 +69,13 @@
           <Property Name="DateOfReturn" Type="date" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="ReturnBooks">
           <Key>
             <PropertyRef Name="ReturnID" />
@@ -94,6 +87,15 @@
           <Property Name="IssueDate" Type="date" Nullable="false" />
           <Property Name="ReturnDate" Type="date" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="StartDate" Type="date" Nullable="false" />
+          <Property Name="EndDate" Type="date" Nullable="false" />
         </EntityType>
         <EntityType Name="Staffs">
           <Key>
@@ -321,6 +323,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Students_Programs">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Sessions">
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="SessionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Students_Staffs">
           <End Role="Staffs" Type="Self.Staffs" Multiplicity="1" />
           <End Role="Students" Type="Self.Students" Multiplicity="*" />
@@ -361,15 +387,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LibraryDBEntitiesModelStoreContainer">
+        <EntityContainer Name="LMS_DBModelStoreContainer">
           <EntitySet Name="BookCategories" EntityType="Self.BookCategories" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Books" EntityType="Self.Books" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BookTable" EntityType="Self.BookTable" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Designations" EntityType="Self.Designations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fines" EntityType="Self.Fines" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="IssueBooks" EntityType="Self.IssueBooks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programs" EntityType="Self.Programs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ReturnBooks" EntityType="Self.ReturnBooks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staffs" EntityType="Self.Staffs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserPrivileges" EntityType="Self.UserPrivileges" Schema="dbo" store:Type="Tables" />
@@ -430,6 +457,14 @@
             <End Role="Departments" EntitySet="Departments" />
             <End Role="Students" EntitySet="Students" />
           </AssociationSet>
+          <AssociationSet Name="FK_Students_Programs" Association="Self.FK_Students_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Sessions" Association="Self.FK_Students_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
           <AssociationSet Name="FK_Students_Staffs" Association="Self.FK_Students_Staffs">
             <End Role="Staffs" EntitySet="Staffs" />
             <End Role="Students" EntitySet="Students" />
@@ -447,7 +482,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="LibraryDBEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="LMS_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="BookCategories">
           <Key>
             <PropertyRef Name="BookCategoryID" />
@@ -477,20 +512,6 @@
           <NavigationProperty Name="Fines" Relationship="Self.FK_Fines_Books" FromRole="Books" ToRole="Fines" />
           <NavigationProperty Name="IssueBooks" Relationship="Self.FK_IssueBooks_Books" FromRole="Books" ToRole="IssueBooks" />
           <NavigationProperty Name="ReturnBooks" Relationship="Self.FK_ReturnBooks_Books" FromRole="Books" ToRole="ReturnBooks" />
-        </EntityType>
-        <EntityType Name="BookTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="price" Type="Double" />
-          <Property Name="stock" Type="Int32" />
-          <Property Name="isbn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="author" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="publisher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="page" Type="Int32" />
-          <Property Name="cover_page_picture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
@@ -542,6 +563,14 @@
           <NavigationProperty Name="Staffs" Relationship="Self.FK_IssueBooks_Staffs" FromRole="IssueBooks" ToRole="Staffs" />
           <NavigationProperty Name="Students" Relationship="Self.FK_IssueBooks_Students" FromRole="IssueBooks" ToRole="Students" />
         </EntityType>
+        <EntityType Name="Programs">
+          <Key>
+            <PropertyRef Name="ProgramID" />
+          </Key>
+          <Property Name="ProgramID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Programs" FromRole="Programs" ToRole="Students" />
+        </EntityType>
         <EntityType Name="ReturnBooks">
           <Key>
             <PropertyRef Name="ReturnID" />
@@ -556,6 +585,16 @@
           <NavigationProperty Name="Books" Relationship="Self.FK_ReturnBooks_Books" FromRole="ReturnBooks" ToRole="Books" />
           <NavigationProperty Name="Staffs" Relationship="Self.FK_ReturnBooks_Staffs" FromRole="ReturnBooks" ToRole="Staffs" />
           <NavigationProperty Name="Students" Relationship="Self.FK_ReturnBooks_Students" FromRole="ReturnBooks" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Sessions">
+          <Key>
+            <PropertyRef Name="SessionID" />
+          </Key>
+          <Property Name="SessionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Students_Sessions" FromRole="Sessions" ToRole="Students" />
         </EntityType>
         <EntityType Name="Staffs">
           <Key>
@@ -598,7 +637,9 @@
           <NavigationProperty Name="Departments" Relationship="Self.FK_Students_Departments" FromRole="Students" ToRole="Departments" />
           <NavigationProperty Name="Fines" Relationship="Self.FK_Fines_Students" FromRole="Students" ToRole="Fines" />
           <NavigationProperty Name="IssueBooks" Relationship="Self.FK_IssueBooks_Students" FromRole="Students" ToRole="IssueBooks" />
+          <NavigationProperty Name="Programs" Relationship="Self.FK_Students_Programs" FromRole="Students" ToRole="Programs" />
           <NavigationProperty Name="ReturnBooks" Relationship="Self.FK_ReturnBooks_Students" FromRole="Students" ToRole="ReturnBooks" />
+          <NavigationProperty Name="Sessions" Relationship="Self.FK_Students_Sessions" FromRole="Students" ToRole="Sessions" />
           <NavigationProperty Name="Staffs" Relationship="Self.FK_Students_Staffs" FromRole="Students" ToRole="Staffs" />
         </EntityType>
         <EntityType Name="UserPrivileges">
@@ -774,6 +815,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Students_Programs">
+          <End Role="Programs" Type="Self.Programs" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programs">
+              <PropertyRef Name="ProgramID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ReturnBooks_Staffs">
           <End Role="Staffs" Type="Self.Staffs" Multiplicity="1" />
           <End Role="ReturnBooks" Type="Self.ReturnBooks" Multiplicity="*" />
@@ -795,6 +848,18 @@
             </Principal>
             <Dependent Role="ReturnBooks">
               <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Students_Sessions">
+          <End Role="Sessions" Type="Self.Sessions" Multiplicity="1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sessions">
+              <PropertyRef Name="SessionID" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="SessionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -838,15 +903,16 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="LibraryDBEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="LMS_DBEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BookCategories" EntityType="Self.BookCategories" />
           <EntitySet Name="Books" EntityType="Self.Books" />
-          <EntitySet Name="BookTable" EntityType="Self.BookTable" />
           <EntitySet Name="Departments" EntityType="Self.Departments" />
           <EntitySet Name="Designations" EntityType="Self.Designations" />
           <EntitySet Name="Fines" EntityType="Self.Fines" />
           <EntitySet Name="IssueBooks" EntityType="Self.IssueBooks" />
+          <EntitySet Name="Programs" EntityType="Self.Programs" />
           <EntitySet Name="ReturnBooks" EntityType="Self.ReturnBooks" />
+          <EntitySet Name="Sessions" EntityType="Self.Sessions" />
           <EntitySet Name="Staffs" EntityType="Self.Staffs" />
           <EntitySet Name="Students" EntityType="Self.Students" />
           <EntitySet Name="UserPrivileges" EntityType="Self.UserPrivileges" />
@@ -899,6 +965,10 @@
             <End Role="Students" EntitySet="Students" />
             <End Role="IssueBooks" EntitySet="IssueBooks" />
           </AssociationSet>
+          <AssociationSet Name="FK_Students_Programs" Association="Self.FK_Students_Programs">
+            <End Role="Programs" EntitySet="Programs" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
           <AssociationSet Name="FK_ReturnBooks_Staffs" Association="Self.FK_ReturnBooks_Staffs">
             <End Role="Staffs" EntitySet="Staffs" />
             <End Role="ReturnBooks" EntitySet="ReturnBooks" />
@@ -906,6 +976,10 @@
           <AssociationSet Name="FK_ReturnBooks_Students" Association="Self.FK_ReturnBooks_Students">
             <End Role="Students" EntitySet="Students" />
             <End Role="ReturnBooks" EntitySet="ReturnBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Students_Sessions" Association="Self.FK_Students_Sessions">
+            <End Role="Sessions" EntitySet="Sessions" />
+            <End Role="Students" EntitySet="Students" />
           </AssociationSet>
           <AssociationSet Name="FK_Students_Staffs" Association="Self.FK_Students_Staffs">
             <End Role="Staffs" EntitySet="Staffs" />
@@ -925,9 +999,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="LibraryDBEntitiesModelStoreContainer" CdmEntityContainer="LibraryDBEntities">
+        <EntityContainerMapping StorageEntityContainer="LMS_DBModelStoreContainer" CdmEntityContainer="LMS_DBEntities1">
           <EntitySetMapping Name="BookCategories">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.BookCategories">
+            <EntityTypeMapping TypeName="LMS_DBModel.BookCategories">
               <MappingFragment StoreEntitySet="BookCategories">
                 <ScalarProperty Name="BookCategoryID" ColumnName="BookCategoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -935,7 +1009,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Books">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.Books">
+            <EntityTypeMapping TypeName="LMS_DBModel.Books">
               <MappingFragment StoreEntitySet="Books">
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
                 <ScalarProperty Name="BookCategoryID" ColumnName="BookCategoryID" />
@@ -951,23 +1025,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="BookTable">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.BookTable">
-              <MappingFragment StoreEntitySet="BookTable">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="stock" ColumnName="stock" />
-                <ScalarProperty Name="isbn" ColumnName="isbn" />
-                <ScalarProperty Name="author" ColumnName="author" />
-                <ScalarProperty Name="publisher" ColumnName="publisher" />
-                <ScalarProperty Name="page" ColumnName="page" />
-                <ScalarProperty Name="cover_page_picture" ColumnName="cover_page_picture" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.Departments">
+            <EntityTypeMapping TypeName="LMS_DBModel.Departments">
               <MappingFragment StoreEntitySet="Departments">
                 <ScalarProperty Name="DepartmentID" ColumnName="DepartmentID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -976,7 +1035,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Designations">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.Designations">
+            <EntityTypeMapping TypeName="LMS_DBModel.Designations">
               <MappingFragment StoreEntitySet="Designations">
                 <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -984,7 +1043,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fines">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.Fines">
+            <EntityTypeMapping TypeName="LMS_DBModel.Fines">
               <MappingFragment StoreEntitySet="Fines">
                 <ScalarProperty Name="FineID" ColumnName="FineID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -998,7 +1057,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="IssueBooks">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.IssueBooks">
+            <EntityTypeMapping TypeName="LMS_DBModel.IssueBooks">
               <MappingFragment StoreEntitySet="IssueBooks">
                 <ScalarProperty Name="IssueID" ColumnName="IssueID" />
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
@@ -1011,8 +1070,16 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Programs">
+            <EntityTypeMapping TypeName="LMS_DBModel.Programs">
+              <MappingFragment StoreEntitySet="Programs">
+                <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ReturnBooks">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.ReturnBooks">
+            <EntityTypeMapping TypeName="LMS_DBModel.ReturnBooks">
               <MappingFragment StoreEntitySet="ReturnBooks">
                 <ScalarProperty Name="ReturnID" ColumnName="ReturnID" />
                 <ScalarProperty Name="BookID" ColumnName="BookID" />
@@ -1024,8 +1091,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Sessions">
+            <EntityTypeMapping TypeName="LMS_DBModel.Sessions">
+              <MappingFragment StoreEntitySet="Sessions">
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Staffs">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.Staffs">
+            <EntityTypeMapping TypeName="LMS_DBModel.Staffs">
               <MappingFragment StoreEntitySet="Staffs">
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
                 <ScalarProperty Name="DesignationID" ColumnName="DesignationID" />
@@ -1039,7 +1116,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Students">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.Students">
+            <EntityTypeMapping TypeName="LMS_DBModel.Students">
               <MappingFragment StoreEntitySet="Students">
                 <ScalarProperty Name="StudentID" ColumnName="StudentID" />
                 <ScalarProperty Name="SessionID" ColumnName="SessionID" />
@@ -1058,7 +1135,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UserPrivileges">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.UserPrivileges">
+            <EntityTypeMapping TypeName="LMS_DBModel.UserPrivileges">
               <MappingFragment StoreEntitySet="UserPrivileges">
                 <ScalarProperty Name="UserPrivilege" ColumnName="UserPrivilege" />
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />
@@ -1075,7 +1152,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="LibraryDBEntitiesModel.Users">
+            <EntityTypeMapping TypeName="LMS_DBModel.Users">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="StaffID" ColumnName="StaffID" />

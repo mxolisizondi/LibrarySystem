@@ -1,4 +1,6 @@
-﻿namespace LibrarySystem.Forms
+﻿using WeifenLuo.WinFormsUI.Docking;
+
+namespace LibrarySystem.Forms
 {
     partial class frmMain
     {
@@ -82,7 +84,7 @@
             this.toolStripReports = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.dp = new WeifenLuo.WinFormsUI.DockPanel();
+            this.dp = new DockPanel();
             this.servicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.eMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
@@ -631,7 +633,7 @@
         private System.Windows.Forms.ToolStripButton toolStripReports;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private WeifenLuo.WinFormsUI.DockPanel dp;
+        private DockPanel dp;
         private System.Windows.Forms.ToolStripMenuItem bookTypesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem servicesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eMailToolStripMenuItem;
